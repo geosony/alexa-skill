@@ -1,0 +1,239 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "blue health platform",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "HelloWorldIntent",
+                    "slots": [],
+                    "samples": [
+                        "hello",
+                        "how are you",
+                        "say hi world",
+                        "say hi",
+                        "hi",
+                        "say hello world",
+                        "say hello"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                },
+                {
+                    "name": "CreateHCPAppointment",
+                    "slots": [
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE",
+                            "samples": [
+                                "i need an appointment on {date}",
+                                "{date}"
+                            ]
+                        },
+                        {
+                            "name": "patient_name",
+                            "type": "AMAZON.FirstName",
+                            "samples": [
+                                "call me {patient_name}",
+                                "I am {patient_name}",
+                                "my name is {patient_name}",
+                                "my first name is {patient_name}",
+                                "{patient_name}"
+                            ]
+                        },
+                        {
+                            "name": "patient_id",
+                            "type": "AMAZON.NUMBER",
+                            "samples": [
+                                "it is {patient_id}",
+                                "my patient id is {patient_id}",
+                                "{patient_id}"
+                            ]
+                        }
+                    ],
+                    "samples": [
+                        "create an appointment on {date} for {patient_name} having  patient ID {patient_id}",
+                        "add an appointment",
+                        "create an appointment",
+                        "appointment"
+                    ]
+                }
+            ],
+            "types": []
+        },
+        "dialog": {
+            "intents": [
+                {
+                    "name": "CreateHCPAppointment",
+                    "confirmationRequired": false,
+                    "prompts": {},
+                    "slots": [
+                        {
+                            "name": "date",
+                            "type": "AMAZON.DATE",
+                            "confirmationRequired": true,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "confirmation": "Confirm.Slot.1286654242530.530837533470",
+                                "elicitation": "Elicit.Slot.1286654242530.530837533470"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isInDuration",
+                                    "prompt": "Slot.Validation.1286654242530.530837533470.761749786871",
+                                    "start": "P0D",
+                                    "end": "P30D"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "patient_name",
+                            "type": "AMAZON.FirstName",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1286654242530.1583946672474"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isInSet",
+                                    "prompt": "Slot.Validation.1286654242530.1583946672474.1182917803760",
+                                    "values": [
+                                        "simon",
+                                        "shah",
+                                        "sreeni",
+                                        "jetin",
+                                        "david",
+                                        "fred",
+                                        "sam",
+                                        "Jacob"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "name": "patient_id",
+                            "type": "AMAZON.NUMBER",
+                            "confirmationRequired": false,
+                            "elicitationRequired": true,
+                            "prompts": {
+                                "elicitation": "Elicit.Slot.1286654242530.145677905220"
+                            },
+                            "validations": [
+                                {
+                                    "type": "isLessThan",
+                                    "prompt": "Slot.Validation.1286654242530.145677905220.1048386094120",
+                                    "value": "10"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ],
+            "delegationStrategy": "ALWAYS"
+        },
+        "prompts": [
+            {
+                "id": "Elicit.Slot.1286654242530.530837533470",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "on which date?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "on which date you need to book an appointment?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1286654242530.530837533470",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "you need to add an appointment on {date} , right?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1286654242530.530837533470.761749786871",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "ok"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1286654242530.1583946672474",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "what is your first name?"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "your first name?"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1286654242530.1583946672474.1182917803760",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "{patient_name} , your name is not white listed in our platform. please try the names we are allowed"
+                    }
+                ]
+            },
+            {
+                "id": "Slot.Validation.1286654242530.145677905220.1048386094120",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "{patient_name} , this patient ID  {patient_id}  is not valid for us. please restart the skill"
+                    }
+                ]
+            },
+            {
+                "id": "Elicit.Slot.1286654242530.145677905220",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "please say your patient ID"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "your patient ID"
+                    },
+                    {
+                        "type": "PlainText",
+                        "value": "your patient id please?"
+                    }
+                ]
+            },
+            {
+                "id": "Confirm.Slot.1270609013353.1051028415464",
+                "variations": [
+                    {
+                        "type": "PlainText",
+                        "value": "your name is {patient_name} , right?"
+                    }
+                ]
+            }
+        ]
+    }
+}
