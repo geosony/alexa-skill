@@ -17,9 +17,9 @@ module.exports = {
 
         const config = {
           method: 'post',
-          url: 'https://healthhack.bluehealthplatform.com/public/calendar-api?facility=healthhack',
+          url: 'https://xxxxxxxx.yyyyyyyyyyyyy.com/public/calendar-api?facility=zzzzzzzz',
           headers: { 
-            'Authorization': 'Bearer 62063299831a357e20ebbdcbd56b0ea5d86a60c1', 
+            'Authorization': 'Bearer xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 
           },
           data : data
         };
